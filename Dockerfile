@@ -24,8 +24,8 @@ RUN set -x \
       zlib-dev \
 # Install Nginx from source, see http://nginx.org/en/linux_packages.html#mainline
  && curl -fsSL http://nginx.org/download/nginx-${NGINX_VERSION}.tar.gz | tar vxz --strip=1 -C /tmp/src/nginx \
- && curl -fsSL https://github.com/kvspb/nginx-auth-ldap/archive/master.zip -o /tmp/nginx-auth-ldap-master.zip \
- && unzip -d /tmp/src /tmp/nginx-auth-ldap-master.zip \
+ && curl -fsSL https://github.com/stangelandcl/nginx-auth-ldap/archive/active_directory.zip -o /tmp/nginx-auth-ldap-active_directory.zip \
+ && unzip -d /tmp/src /tmp/nginx-auth-ldap-active_directory.zip \
  && cd /tmp/src/nginx \
  && addgroup -S nginx \
  && adduser -D -S -h /var/cache/nginx -s /sbin/nologin -G nginx nginx \
@@ -73,7 +73,7 @@ RUN set -x \
   		--with-compat \
   		--with-file-aio \
   		--with-http_v2_module \
-      --add-module=/tmp/src/nginx-auth-ldap-master \
+      --add-module=/tmp/src/nginx-auth-ldap-active_directory \
  && make -j$(getconf _NPROCESSORS_ONLN) \
  && make install \
  && mkdir -vp \
